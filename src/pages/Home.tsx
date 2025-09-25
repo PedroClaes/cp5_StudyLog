@@ -11,7 +11,7 @@ const initialSessions: StudySession[] = [
 export function Home() {
   const [sessions] = useState(initialSessions);
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <h1 className="text-2xl mb-4">Minhas Sessões de Estudo</h1>
       <div className="grid gap-2">
         {sessions.map(s => <SessionCard key={s.id} session={s} />)}

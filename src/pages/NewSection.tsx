@@ -20,7 +20,7 @@ export function AddSession({ onAdd }: { onAdd: (session: StudySession) => void }
   }
   
   return (
-    <form onSubmit={handleSubmit} className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-2" >
       <input placeholder="Disciplina" value={subject} onChange={e => setSubject(e.target.value)} required className="border p-1" />
       <input type="number" placeholder="Minutos" value={minutes} onChange={e => setMinutes(Number(e.target.value))} required className="border p-1" />
       <input type="date" value={date} onChange={e => setDate(e.target.value)} required className="border p-1" />
