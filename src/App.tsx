@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
+
+
 export function App() {
   return (
     <BrowserRouter>
@@ -10,8 +12,4 @@ export function App() {
       </Routes>
     </BrowserRouter>
   );
-}
-
-export function NotFound() {
-  return <div className="text-center text-red-500 mt-8">Página não encontrada (404)</div>;
 }
