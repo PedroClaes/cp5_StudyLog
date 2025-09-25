@@ -1,14 +1,17 @@
-import './App.css'
-
-function App() {
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { NotFound } from "./pages/NotFound";
+export function App() {
   return (
-    <>
-      
-      <h1>Study Lot</h1>
-      
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export function NotFound() {
+  return <div className="text-center text-red-500 mt-8">Página não encontrada (404)</div>;
+}
