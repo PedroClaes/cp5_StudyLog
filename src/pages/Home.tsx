@@ -9,7 +9,7 @@ const initialSessions: StudySession[] = [
 ];
 
 
-export function Home() {
+export default function Home() {
   const [sessions] = useState(initialSessions);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

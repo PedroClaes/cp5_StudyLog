@@ -1,13 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useCallback } from "react";
-import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
 import { MainLayout } from "./components/layout";
-import { SessionDetails } from "./pages/Detalhes";
-import { AddSession } from "./pages/NewSection";
+import { Suspense, lazy, useCallback, useState } from "react";
 import type { StudySession } from "./types/StudySession";
 
+
+const Home = lazy(() => import("./pages/Home"));
+const AddSession = lazy(() => import("./pages/NewSection"));
+const SessionDetails = lazy(() => import("./pages/Detalhes"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+
 export function App() {
+
   const [sessions, setSessions] = useState<StudySession[]>([]);
 
   const handleAddSession = useCallback((session: StudySession) => {
@@ -16,14 +20,16 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/add" element={<AddSession onAdd={handleAddSession} />} />
-          <Route path="/session/:id" element={<SessionDetails sessions={sessions} />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <Suspense fallback={<div>Carregando...</div>}>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/add" element={<AddSession onAdd={handleAddSession} />} />
+            <Route path="/session/:id" element={<SessionDetails sessions={sessions} />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

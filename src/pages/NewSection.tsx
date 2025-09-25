@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { StudySession } from "../types/StudySession";
 
 
-export function AddSession({ onAdd }: { onAdd: (session: StudySession) => void }) {
+export default function AddSession({ onAdd }: { onAdd: (session: StudySession) => void }) {
   const [subject, setSubject] = useState("");
   const [minutes, setMinutes] = useState(0);
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
