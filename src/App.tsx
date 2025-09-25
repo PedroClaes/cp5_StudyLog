@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MainLayout } from "./components/layout";
 import { Suspense, lazy, useCallback, useState } from "react";
 import type { StudySession } from "./types/StudySession";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 
 const Home = lazy(() => import("./pages/Home"));
@@ -20,16 +21,23 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Carregando...</div>}>
-        <Routes>
-          <Route element={<MainLayout />}>
+      <ErrorBoundary>
+        <Suspense fallback={<div>Carregando...</div>}>
+          <Routes>
+            <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/add" element={<AddSession onAdd={handleAddSession} />} />
             <Route path="/session/:id" element={<SessionDetails sessions={sessions} />} />
             <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Suspense>
+            
+            </Route>
+          </Routes>
+        </Suspense>
+
+      </ErrorBoundary>
+
+      
     </BrowserRouter>
+    
   );
 }
