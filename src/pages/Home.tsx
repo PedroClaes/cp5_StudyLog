@@ -8,6 +8,7 @@ const initialSessions: StudySession[] = [
   { id: "2", subject: "Estruturas de Dados", minutes: 120, date: "2025-09-22" }
 ];
 
+
 export function Home() {
   const [sessions] = useState(initialSessions);
   return (
@@ -19,4 +20,3 @@ export function Home() {
     </div>
   );
 }
-
