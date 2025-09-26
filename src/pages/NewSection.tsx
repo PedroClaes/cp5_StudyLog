@@ -1,11 +1,12 @@
 import { useState } from "react";
 import type { StudySession } from "../types/StudySession";
-
+import { useNavigate } from "react-router-dom";
 
 export default function AddSession({ onAdd }: { onAdd: (session: StudySession) => void }) {
   const [subject, setSubject] = useState("");
   const [minutes, setMinutes] = useState(0);
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  const navigate = useNavigate();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -17,8 +18,9 @@ export default function AddSession({ onAdd }: { onAdd: (session: StudySession) =
     });
     setSubject("");
     setMinutes(0);
+    navigate("/"); 
   }
-  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-2" >
       <input placeholder="Disciplina" value={subject} onChange={e => setSubject(e.target.value)} required className="border p-1" />
@@ -28,4 +30,3 @@ export default function AddSession({ onAdd }: { onAdd: (session: StudySession) =
     </form>
   );
 }
-
