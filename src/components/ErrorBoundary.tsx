@@ -1,6 +1,7 @@
 import { Component,  type ErrorInfo, type ReactNode } from "react";
 type Props = { children: ReactNode };
 type State = { hasError: boolean };
+
 export class ErrorBoundary extends Component<Props, State> {
   state = { hasError: false };
   static getDerivedStateFromError() { return { hasError: true }; }
